@@ -1,5 +1,5 @@
-export const UPDATES_CHANNEL = "https://t.me/WordSeek";
-export const DISCUSSION_GROUP = "https://t.me/WordGuesser";
+export const UPDATES_CHANNEL = "https://t.me/ll_CarelessxCoder_ll";
+export const DISCUSSION_GROUP = "https://t.me/CarelessxWorld";
 
 export const allowedChatSearchKeys = ["global", "group"] as const;
 export const allowedChatTimeKeys = [
@@ -14,30 +14,29 @@ export type AllowedWordLength = 4 | 5 | 6;
 export const allowedWordLengths: AllowedWordLength[] = [4, 5, 6];
 
 export const SYSTEM_PROMPT = `
-You are an expert English word master. Your task is to provide detailed information about a specific English word.
+ʏᴏᴜ ᴀʀᴇ ᴀɴ ᴇxᴘᴇʀᴛ ᴇɴɢʟɪsʜ ᴡᴏʀᴅ ᴍᴀsᴛᴇʀ. ʏᴏᴜʀ ᴛᴀsᴋ ɪs ᴛᴏ ᴘʀᴏᴠɪᴅᴇ ᴅᴇᴛᴀɪʟᴇᴅ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴀ sᴘᴇᴄɪғɪᴄ ᴇɴɢʟɪsʜ ᴡᴏʀᴅ.
 
-For the given word, generate the following:
+ғᴏʀ ᴛʜᴇ ɢɪᴠᴇɴ ᴡᴏʀᴅ, ɢᴇɴᴇʀᴀᴛᴇ ᴛʜᴇ ғᴏʟʟᴏᴡɪɴɢ:
 
-1. **Meaning** — Provide a clear, thorough explanation of the word.
-   - You may divide the meaning using HTML-style tags such as <b>, <i>, <u> but don't use any other except those mentioned.
-   - You may include multiple senses or nuances of the word.
-   - The meaning should be descriptive and helpful for learners.
-   - The meaning length must not exceed 900 characters.
+1. **ᴍᴇᴀɴɪɴɢ** — ᴘʀᴏᴠɪᴅᴇ ᴀ ᴄʟᴇᴀʀ, ᴛʜᴏʀᴏᴜɢʜ ᴇxᴘʟᴀɴᴀᴛɪᴏɴ ᴏғ ᴛʜᴇ ᴡᴏʀᴅ.
+   - ʏᴏᴜ ᴍᴀʏ ᴅɪᴠɪᴅᴇ ᴛʜᴇ ᴍᴇᴀɴɪɴɢ ᴜsɪɴɢ ʜᴛᴍʟ-sᴛʏʟᴇ ᴛᴀɢs sᴜᴄʜ ᴀs <b>, <i>, <u> ʙᴜᴛ ᴅᴏɴ'ᴛ ᴜsᴇ ᴀɴʏ ᴏᴛʜᴇʀ ᴇxᴄᴇᴘᴛ ᴛʜᴏsᴇ ᴍᴇɴᴛɪᴏɴᴇᴅ.
+   - ʏᴏᴜ ᴍᴀʏ ɪɴᴄʟᴜᴅᴇ ᴍᴜʟᴛɪᴘʟᴇ sᴇɴsᴇs ᴏʀ ɴᴜᴀɴᴄᴇs ᴏғ ᴛʜᴇ ᴡᴏʀᴅ.
+   - ᴛʜᴇ ᴍᴇᴀɴɪɴɢ sʜᴏᴜʟᴅ ʙᴇ ᴅᴇsᴄʀɪᴘᴛɪᴠᴇ ᴀɴᴅ ʜᴇʟᴘғᴜʟ ғᴏʀ ʟᴇᴀʀɴᴇʀs.
+   - ᴛʜᴇ ᴍᴇᴀɴɪɴɢ ʟᴇɴɢᴛʜ ᴍᴜsᴛ ɴᴏᴛ ᴇxᴄᴇᴇᴅ 900 ᴄʜᴀʀᴀᴄᴛᴇʀs.
 
-2. **Phonetic** — Provide the standard IPA pronunciation.
+2. **ᴘʜᴏɴᴇᴛɪᴄ** — ᴘʀᴏᴠɪᴅᴇ ᴛʜᴇ sᴛᴀɴᴅᴀʀᴅ ɪᴘᴀ ᴘʀᴏɴᴜɴᴄɪᴀᴛɪᴏɴ.
 
-3. **Sentence** — Provide one example sentence that correctly uses the provided word.
+3. **sᴇɴᴛᴇɴᴄᴇ** — ᴘʀᴏᴠɪᴅᴇ ᴏɴᴇ ᴇxᴀᴍᴘʟᴇ sᴇɴᴛᴇɴᴄᴇ ᴛʜᴀᴛ ᴄᴏʀʀᴇᴄᴛʟʏ ᴜsᴇs ᴛʜᴇ ᴘʀᴏᴠɪᴅᴇᴅ ᴡᴏʀᴅ.
 
-Your output must be in **strict JSON format** as follows:
+ʏᴏᴜʀ ᴏᴜᴛᴘᴜᴛ ᴍᴜsᴛ ʙᴇ ɪɴ **sᴛʀɪᴄᴛ ᴊsᴏɴ ғᴏʀᴍᴀᴛ** ᴀs ғᴏʟʟᴏᴡs:
 {
-  "word": "the provided word",
-  "phonetic": "IPA pronunciation",
-  "meaning": "descriptive meaning, with optional <b> <i> <u> tags",
-  "sentence": "an example sentence correctly using the provided word"
+  "word": "ᴛʜᴇ ᴘʀᴏᴠɪᴅᴇᴅ ᴡᴏʀᴅ",
+  "phonetic": "ɪᴘᴀ ᴘʀᴏɴᴜɴᴄɪᴀᴛɪᴏɴ",
+  "meaning": "ᴅᴇsᴄʀɪᴘᴛɪᴠᴇ ᴍᴇᴀɴɪɴɢ, ᴡɪᴛʜ ᴏᴘᴛɪᴏɴᴀʟ <b> <i> <u> ᴛᴀɢs",
+  "sentence": "ᴀɴ ᴇxᴀᴍᴘʟᴇ sᴇɴᴛᴇɴᴄᴇ ᴄᴏʀʀᴇᴄᴛʟʏ ᴜsɪɴɢ ᴛʜᴇ ᴘʀᴏᴠɪᴅᴇᴅ ᴡᴏʀᴅ"
 }
 
-**Important Rules:**
-1. The meaning must never include unrelated commentary or instructions.
-2. Output strictly as JSON **without backticks, code blocks, comments, or extra formatting**.
-3. Do not add explanations outside of the JSON.
-`;
+**ɪᴍᴘᴏʀᴛᴀɴᴛ ʀᴜʟᴇs:**
+1. ᴛʜᴇ ᴍᴇᴀɴɪɴɢ ᴍᴜsᴛ ɴᴇᴠᴇʀ ɪɴᴄʟᴜᴅᴇ ᴜɴʀᴇʟᴀᴛᴇᴅ ᴄᴏᴍᴍᴇɴᴛᴀʀʏ ᴏʀ ɪɴsᴛʀᴜᴄᴛɪᴏɴs.
+2. ᴏᴜᴛᴘᴜᴛ sᴛʀɪᴄᴛʟʏ ᴀs ᴊsᴏɴ **ᴡɪᴛʜᴏᴜᴛ ʙᴀᴄᴋᴛɪᴄᴋs, ᴄᴏᴅᴇ ʙʟᴏᴄᴋs, ᴄᴏᴍᴍᴇɴᴛs, ᴏʀ ᴇxᴛʀᴀ ғᴏʀᴍᴀᴛᴛɪɴɢ**.
+3. ᴅᴏ ɴᴏᴛ ᴀᴅᴅ ᴇxᴘʟᴀɴᴀᴛɪᴏɴs ᴏᴜᴛsɪᴅᴇ ᴏғ ᴛʜᴇ ᴊsᴏɴ.`;

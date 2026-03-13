@@ -28,14 +28,10 @@ function getTimezoneLabel(): string {
     const tzName = parts.find((p) => p.type === "timeZoneName")?.value;
 
     const [, cityRaw] = tz.split("/");
-    const city = cityRaw?.replace(/_/g, " ") ?? tz; // e.g. "Kathmandu"
+    const city = cityRaw?.replace(/_/g, " ") ?? tz;
 
-    if (city && tzName) {
-      return `${city} time (${tzName})`;
-    }
-    if (city) {
-      return `${city} time`;
-    }
+    if (city && tzName) return `${city} ᴛɪᴍᴇ (${tzName})`;
+    if (city) return `${city} ᴛɪᴍᴇ`;
     return tz;
   } catch {
     return tz;
@@ -47,21 +43,21 @@ export function getMainHelpKeyboard(
   active: HelpSection = "howto",
 ) {
   const keyboard = new InlineKeyboard()
-    .text(formatActiveButton("How to Play", active === "howto"), "help_howto")
+    .text(formatActiveButton("ʜᴏᴡ ᴛᴏ ᴘʟᴀʏ", active === "howto"), "help_howto")
     .style(active == "howto" ? "primary" : undefined)
     .text(
-      formatActiveButton("Leaderboard & Scores", active === "scores"),
+      formatActiveButton("ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ & sᴄᴏʀᴇs", active === "scores"),
       "help_scores",
     )
     .style(active == "scores" ? "primary" : undefined)
     .row()
     .text(
-      formatActiveButton("Group Settings", active === "group"),
+      formatActiveButton("ɢʀᴏᴜᴘ sᴇᴛᴛɪɴɢs", active === "group"),
       "help_group",
     )
     .style(active == "group" ? "primary" : undefined)
     .text(
-      formatActiveButton("Other Commands", active === "other"),
+      formatActiveButton("ᴏᴛʜᴇʀ ᴄᴏᴍᴍᴀɴᴅs", active === "other"),
       "help_other",
     )
     .style(active == "other" ? "primary" : undefined);
@@ -70,14 +66,16 @@ export function getMainHelpKeyboard(
     keyboard
       .row()
       .text(
-        formatActiveButton("👑 Admin Commands", active === "admin"),
+        formatActiveButton("👑 ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs", active === "admin"),
         "help_admin",
       )
       .style(active == "admin" ? "primary" : undefined);
   }
-  keyboard.url("GitHub Repo", "https://github.com/binamralamsal/WordSeek");
-  keyboard.row().url("📢 Updates", UPDATES_CHANNEL);
-  keyboard.url("💬 Discussion", DISCUSSION_GROUP);
+
+  keyboard
+    .row()
+    .url("📢 ᴜᴘᴅᴀᴛᴇs", UPDATES_CHANNEL)
+    .url("💬 ᴅɪsᴄᴜssɪᴏɴ", DISCUSSION_GROUP);
 
   return keyboard;
 }
@@ -85,44 +83,45 @@ export function getMainHelpKeyboard(
 export function getHowToPlayMessage() {
   const timezoneLabel = getTimezoneLabel();
 
-  return `<b>▸ How to Play WordSeek</b>
+  return `<b>▸ ʜᴏᴡ ᴛᴏ ᴘʟᴀʏ ᴡᴏʀᴅsᴇᴇᴋ</b>
 
-<blockquote>1. Start a game using /new, /new4, /new5, or /new6
-2. Guess the hidden word
-3. After each guess, you'll get color hints:
-   🟩 Correct letter in the right spot
-   🟨 Correct letter in the wrong spot
-   🟥 Letter not in the word
-4. First person to guess correctly wins!
-5. Maximum 30 guesses per game</blockquote>
+<blockquote>1. sᴛᴀʀᴛ ᴀ ɢᴀᴍᴇ ᴜsɪɴɢ /new, /new4, /new5, ᴏʀ /new6
+2. ɢᴜᴇss ᴛʜᴇ ʜɪᴅᴅᴇɴ ᴡᴏʀᴅ
+3. ᴀғᴛᴇʀ ᴇᴀᴄʜ ɢᴜᴇss, ʏᴏᴜ'ʟʟ ɢᴇᴛ ᴄᴏʟᴏʀ ʜɪɴᴛs:
+   🟩 ᴄᴏʀʀᴇᴄᴛ ʟᴇᴛᴛᴇʀ ɪɴ ᴛʜᴇ ʀɪɢʜᴛ sᴘᴏᴛ
+   🟨 ᴄᴏʀʀᴇᴄᴛ ʟᴇᴛᴛᴇʀ ɪɴ ᴛʜᴇ ᴡʀᴏɴɢ sᴘᴏᴛ
+   🟥 ʟᴇᴛᴛᴇʀ ɴᴏᴛ ɪɴ ᴛʜᴇ ᴡᴏʀᴅ
+4. ғɪʀsᴛ ᴘᴇʀsᴏɴ ᴛᴏ ɢᴜᴇss ᴄᴏʀʀᴇᴄᴛʟʏ ᴡɪɴs!
+5. ᴍᴀxɪᴍᴜᴍ 30 ɢᴜᴇssᴇs ᴘᴇʀ ɢᴀᴍᴇ</blockquote>
 
-<b>Word Length Modes:</b>
-<blockquote>• /new → Start default 5-letter game
-• /new 4 → Start specific length (4, 5, or 6)
-• /new4 → Start 4-letter game
-• /new5 → Start 5-letter game
-• /new6 → Start 6-letter game</blockquote>
+<b>ᴡᴏʀᴅ ʟᴇɴɢᴛʜ ᴍᴏᴅᴇs:</b>
+<blockquote>• /new → sᴛᴀʀᴛ ᴅᴇғᴀᴜʟᴛ 5-ʟᴇᴛᴛᴇʀ ɢᴀᴍᴇ
+• /new 4 → sᴛᴀʀᴛ sᴘᴇᴄɪғɪᴄ ʟᴇɴɢᴛʜ (4, 5, ᴏʀ 6)
+• /new4 → sᴛᴀʀᴛ 4-ʟᴇᴛᴛᴇʀ ɢᴀᴍᴇ
+• /new5 → sᴛᴀʀᴛ 5-ʟᴇᴛᴛᴇʀ ɢᴀᴍᴇ
+• /new6 → sᴛᴀʀᴛ 6-ʟᴇᴛᴛᴇʀ ɢᴀᴍᴇ</blockquote>
 
-<b>Basic Commands:</b>
-• /new - Start a new game (default 5 letters)
-• /new4 - Start a 4-letter game
-• /new5 - Start a 5-letter game
-• /new6 - Start a 6-letter game
-• /end - End current game (voting or admin only)
-• /help - Show this help menu
-• /daily - Play Daily WordSeek (private chat only)
-• /pausedaily - Pause Daily mode and go back to normal games
+<b>ʙᴀsɪᴄ ᴄᴏᴍᴍᴀɴᴅs:</b>
+• /new - sᴛᴀʀᴛ ᴀ ɴᴇᴡ ɢᴀᴍᴇ (ᴅᴇғᴀᴜʟᴛ 5 ʟᴇᴛᴛᴇʀs)
+• /new4 - sᴛᴀʀᴛ ᴀ 4-ʟᴇᴛᴛᴇʀ ɢᴀᴍᴇ
+• /new5 - sᴛᴀʀᴛ ᴀ 5-ʟᴇᴛᴛᴇʀ ɢᴀᴍᴇ
+• /new6 - sᴛᴀʀᴛ ᴀ 6-ʟᴇᴛᴛᴇʀ ɢᴀᴍᴇ
+• /end - ᴇɴᴅ ᴄᴜʀʀᴇɴᴛ ɢᴀᴍᴇ (ᴠᴏᴛɪɴɢ ᴏʀ ᴀᴅᴍɪɴ ᴏɴʟʏ)
+• /help - sʜᴏᴡ ᴛʜɪs ʜᴇʟᴘ ᴍᴇɴᴜ
+• /daily - ᴘʟᴀʏ ᴅᴀɪʟʏ ᴡᴏʀᴅsᴇᴇᴋ (ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ ᴏɴʟʏ)
+• /pausedaily - ᴘᴀᴜsᴇ ᴅᴀɪʟʏ ᴍᴏᴅᴇ ᴀɴᴅ ɢᴏ ʙᴀᴄᴋ ᴛᴏ ɴᴏʀᴍᴀʟ ɢᴀᴍᴇs
 
-<b>Daily Mode (Private Chat Only):</b>
-<blockquote>• Start a daily game using /daily command
-• Works like New York Times Wordle: one fixed word per day
-• You only get 6 guesses per daily puzzle
-• A new puzzle unlocks every day at 06:00 in <code>${timezoneLabel}</code>
-• You build a streak by solving the daily puzzle without failing
-• You cannot play normal WordSeek and Daily at the same time:
-  - If a normal game is running, end it before using /daily
-  - If Daily is active, use /pausedaily to play normal WordSeek again</blockquote>`;
+<b>ᴅᴀɪʟʏ ᴍᴏᴅᴇ (ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ ᴏɴʟʏ):</b>
+<blockquote>• sᴛᴀʀᴛ ᴀ ᴅᴀɪʟʏ ɢᴀᴍᴇ ᴜsɪɴɢ /daily ᴄᴏᴍᴍᴀɴᴅ
+• ᴡᴏʀᴋs ʟɪᴋᴇ ɴᴇᴡ ʏᴏʀᴋ ᴛɪᴍᴇs ᴡᴏʀᴅʟᴇ: ᴏɴᴇ ғɪxᴇᴅ ᴡᴏʀᴅ ᴘᴇʀ ᴅᴀʏ
+• ʏᴏᴜ ᴏɴʟʏ ɢᴇᴛ 6 ɢᴜᴇssᴇs ᴘᴇʀ ᴅᴀɪʟʏ ᴘᴜᴢᴢʟᴇ
+• ᴀ ɴᴇᴡ ᴘᴜᴢᴢʟᴇ ᴜɴʟᴏᴄᴋs ᴇᴠᴇʀʏ ᴅᴀʏ ᴀᴛ 06:00 ɪɴ <code>${timezoneLabel}</code>
+• ʏᴏᴜ ʙᴜɪʟᴅ ᴀ sᴛʀᴇᴀᴋ ʙʏ sᴏʟᴠɪɴɢ ᴛʜᴇ ᴅᴀɪʟʏ ᴘᴜᴢᴢʟᴇ ᴡɪᴛʜᴏᴜᴛ ғᴀɪʟɪɴɢ
+• ʏᴏᴜ ᴄᴀɴɴᴏᴛ ᴘʟᴀʏ ɴᴏʀᴍᴀʟ ᴡᴏʀᴅsᴇᴇᴋ ᴀɴᴅ ᴅᴀɪʟʏ ᴀᴛ ᴛʜᴇ sᴀᴍᴇ ᴛɪᴍᴇ:
+  - ɪғ ᴀ ɴᴏʀᴍᴀʟ ɢᴀᴍᴇ ɪs ʀᴜɴɴɪɴɢ, ᴇɴᴅ ɪᴛ ʙᴇғᴏʀᴇ ᴜsɪɴɢ /daily
+  - ɪғ ᴅᴀɪʟʏ ɪs ᴀᴄᴛɪᴠᴇ, ᴜsᴇ /pausedaily ᴛᴏ ᴘʟᴀʏ ɴᴏʀᴍᴀʟ ᴡᴏʀᴅsᴇᴇᴋ ᴀɢᴀɪɴ</blockquote>`;
 }
+
 
 export function getScoresMessage() {
   return `<b>▸ Leaderboard & Scores</b>
@@ -173,90 +172,104 @@ All parameters are optional and can be used in any order.
 Same as <code>/leaderboard</code></blockquote>`;
 }
 
+
+
 export function getGroupSettingsMessage() {
-  return `<b>▸ Group Settings (Admin Only)</b>
+  return `<b>▸ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ & sᴄᴏʀᴇs</b>
 
-<b>Authorized Users</b>
-<blockquote><b>/seekauth</b> – Manage users who can end games without a vote.
+<b>ǫᴜɪᴄᴋ ᴇxᴀᴍᴘʟᴇs:</b>
+<blockquote><code>/leaderboard</code> - ɢʀᴏᴜᴘ, ᴛᴏᴅᴀʏ (ᴅᴇғᴀᴜʟᴛ 5-ʟᴇᴛᴛᴇʀ)
+<code>/leaderboard 4</code> - 4-ʟᴇᴛᴛᴇʀ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ (ɢʀᴏᴜᴘ, ᴛᴏᴅᴀʏ)
+<code>/leaderboard global week 6</code> - ɢʟᴏʙᴀʟ ʀᴀɴᴋɪɴɢs ᴛʜɪs ᴡᴇᴇᴋ (6-ʟᴇᴛᴛᴇʀ ᴍᴏᴅᴇ)
+<code>/leaderboard month</code> - ᴛʜɪs ɢʀᴏᴜᴘ's ᴍᴏɴᴛʜʟʏ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ
 
-<b>Usage:</b>
-• <code>/seekauth @username</code> – Authorize a user
-• <code>/seekauth remove @username</code> – Remove authorization
-• <code>/seekauth list</code> – List all authorized users
+<code>/score</code> - ʏᴏᴜʀ sᴄᴏʀᴇ (ɢʀᴏᴜᴘ, ᴛᴏᴅᴀʏ, 5-ʟᴇᴛᴛᴇʀ ʙʏ ᴅᴇғᴀᴜʟᴛ)
+<code>/score 6</code> - ʏᴏᴜʀ 6-ʟᴇᴛᴛᴇʀ sᴛᴀᴛs
+<code>/score @username global all 4</code> - ғᴜʟʟ 4-ʟᴇᴛᴛᴇʀ ɢʟᴏʙᴀʟ ʜɪsᴛᴏʀʏ ғᴏʀ ᴀ ᴜsᴇʀ
+<code>/score 123456789 month</code> - ᴍᴏɴᴛʜʟʏ sᴛᴀᴛs ғᴏʀ ᴀ ᴜsᴇʀ</blockquote>
 
-You can also use a user ID or reply to a message instead of @username.</blockquote>
+<b>ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ ᴄᴏᴍᴍᴀɴᴅ</b>
+<blockquote><b>sʏɴᴛᴀx:</b> <code>/leaderboard [scope] [period] [length]</code>
 
-<b>Game Topic (Forum Groups)</b>
-<blockquote><b>/setgametopic</b> – Restrict games to one or more topics
-Run this command <i>inside the topic</i> where you want games to be played.
-After setting, the bot will only run games in that topic.
+ᴀʟʟ ᴘᴀʀᴀᴍᴇᴛᴇʀs ᴀʀᴇ ᴏᴘᴛɪᴏɴᴀʟ ᴀɴᴅ ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ɪɴ ᴀɴʏ ᴏʀᴅᴇʀ.
 
-<b>/unsetgametopic</b> – Remove topic restriction
-Usage: <code>/unsetgametopic</code>
-After unsetting, the bot can run games in any topic in the group again. If there are other topics set, the bot will only run in those topics.
+<b>sᴄᴏᴘᴇ:</b>
+• <code>group</code> (ᴅᴇғᴀᴜʟᴛ) - ᴄᴜʀʀᴇɴᴛ ɢʀᴏᴜᴘ ᴏɴʟʏ
+• <code>global</code> - ᴀʟʟ ɢʀᴏᴜᴘs ᴄᴏᴍʙɪɴᴇᴅ
 
-<b>/allowonlylen</b> – Restrict allowed word lengths in this topic
-Usage: <code>/allowonlylen 4</code> or <code>/allowonlylen 5 6</code>
-Run this inside a game topic.
+<b>ᴘᴇʀɪᴏᴅ:</b>
+• <code>today</code> (ᴅᴇғᴀᴜʟᴛ)
+• <code>week</code>
+• <code>month</code>
+• <code>year</code>
+• <code>all</code>
 
-You can allow one or more of: 4, 5, 6.
-The first number you specify becomes the default length for <code>/new</code> in that topic.
+<b>ʟᴇɴɢᴛʜ:</b>
+• <code>4</code> - 4-ʟᴇᴛᴛᴇʀ ᴍᴏᴅᴇ
+• <code>5</code> - 5-ʟᴇᴛᴛᴇʀ ᴍᴏᴅᴇ (ᴅᴇғᴀᴜʟᴛ)
+• <code>6</code> - 6-ʟᴇᴛᴛᴇʀ ᴍᴏᴅᴇ</blockquote>
 
-If not configured, all lengths (4, 5, 6) are allowed by default.
+<b>sᴄᴏʀᴇ ᴄᴏᴍᴍᴀɴᴅ</b>
+<blockquote><b>sʏɴᴛᴀx:</b> <code>/score [target] [scope] [period] [length]</code>
 
-<b>/recreatetopic</b> – Auto-recreate topic when it expires
-Usage: <code>/recreatetopic on</code> or <code>/recreatetopic off</code>
-Run this command inside a game topic.
+ᴀʟʟ ᴘᴀʀᴀᴍᴇᴛᴇʀs ᴀʀᴇ ᴏᴘᴛɪᴏɴᴀʟ ᴀɴᴅ ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ɪɴ ᴀɴʏ ᴏʀᴅᴇʀ.
 
-When enabled, if the topic automatically expires (Telegram forum feature), the bot will recreate the same topic so games can continue.</blockquote>`;
-}
+<b>ᴛᴀʀɢᴇᴛ (ᴏᴘᴛɪᴏɴᴀʟ):</b>
+• ʟᴇᴀᴠᴇ ᴇᴍᴘᴛʏ ғᴏʀ ʏᴏᴜʀ ᴏᴡɴ sᴄᴏʀᴇ
+• <code>@username</code> - ʟᴏᴏᴋ ᴜᴘ ʙʏ ᴜsᴇʀɴᴀᴍᴇ
+• <code>user_id</code> - ʟᴏᴏᴋ ᴜᴘ ʙʏ ᴛᴇʟᴇɢʀᴀᴍ ᴜsᴇʀ ɪᴅ
+
+<b>sᴄᴏᴘᴇ, ᴘᴇʀɪᴏᴅ & ʟᴇɴɢᴛʜ:</b>
+sᴀᴍᴇ ᴀs <code>/leaderboard</code></blockquote>`;
+
 
 export function getOtherCommandsMessage() {
-  return `<b>▸ Other Commands</b>
+  return `<b>▸ ᴏᴛʜᴇʀ ᴄᴏᴍᴍᴀɴᴅs</b>
 
-<blockquote><b>/id</b> - Get message information
-Reply to any message to see:
-• Message ID and date
-• User information
-• Chat information
-• Forward information (if forwarded)
-• File IDs for media
+<blockquote><b>/id</b> - ɢᴇᴛ ᴍᴇssᴀɢᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ
+ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍᴇssᴀɢᴇ ᴛᴏ sᴇᴇ:
+• ᴍᴇssᴀɢᴇ ɪᴅ ᴀɴᴅ ᴅᴀᴛᴇ
+• ᴜsᴇʀ ɪɴғᴏʀᴍᴀᴛɪᴏɴ
+• ᴄʜᴀᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ
+• ғᴏʀᴡᴀʀᴅ ɪɴғᴏʀᴍᴀᴛɪᴏɴ (ɪғ ғᴏʀᴡᴀʀᴅᴇᴅ)
+• ғɪʟᴇ ɪᴅs ғᴏʀ ᴍᴇᴅɪᴀ
 
-<b>Only admins can use in case of a group</b></blockquote>`;
+<b>ᴏɴʟʏ ᴀᴅᴍɪɴs ᴄᴀɴ ᴜsᴇ ɪɴ ᴄᴀsᴇ ᴏғ ᴀ ɢʀᴏᴜᴘ</b></blockquote>`;
 }
 
 export function getAdminCommandsMessage() {
-  return `<b>▸ Admin Commands (Bot Owner Only)</b>
+  return `<b>▸ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs (ʙᴏᴛ ᴏᴡɴᴇʀ ᴏɴʟʏ)</b>
 
 <blockquote><b>/ban [user_id]</b>
-Ban a user from using the bot globally
+ʙᴀɴ ᴀ ᴜsᴇʀ ғʀᴏᴍ ᴜsɪɴɢ ᴛʜᴇ ʙᴏᴛ ɢʟᴏʙᴀʟʏ
 
 <b>/unban [user_id]</b>
-Unban a previously banned user
+ᴜɴʙᴀɴ ᴀ ᴘʀᴇᴠɪᴏᴜsʟʏ ʙᴀɴɴᴇᴅ ᴜsᴇʀ
 
 <b>/stats</b>
-View bot statistics including:
-• Total users and groups
-• Memory and CPU Usage
-• VPS load and bot's performance
+ᴠɪᴇᴡ ʙᴏᴛ sᴛᴀᴛɪsᴛɪᴄs ɪɴᴄʟᴜᴅɪɴɢ:
+• ᴛᴏᴛᴀʟ ᴜsᴇʀs ᴀɴᴅ ɢʀᴏᴜᴘs
+• ᴍᴇᴍᴏʀʏ ᴀɴᴅ ᴄᴘᴜ ᴜsᴀɢᴇ
+• ᴠᴘs ʟᴏᴀᴅ ᴀɴᴅ ʙᴏᴛ's ᴘᴇʀғᴏʀᴍᴀɴᴄᴇ
 
 <b>/transfer &lt;from_user&gt; &lt;to_user&gt;</b>
-Transfer scores between users
+ᴛʀᴀɴsғᴇʀ sᴄᴏʀᴇs ʙᴇᴛᴡᴇᴇɴ ᴜsᴇʀs
 
 <b>/broadcast</b>
-Broadcast a message to all broadcastable chats (groups and users)
-Reply to a message with this command
+ʙʀᴏᴀᴅᴄᴀsᴛ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ᴀʟʟ ʙʀᴏᴀᴅᴄᴀsᴛᴀʙʟᴇ ᴄʜᴀᴛs (ɢʀᴏᴜᴘs ᴀɴᴅ ᴜsᴇʀs)
+ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴡɪᴛʜ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ
 
 <b>/track &lt;chat_id&gt;</b>
-Start tracking a chat and send all messages from that chat
-Use it only for detecting cheaters
+sᴛᴀʀᴛ ᴛʀᴀᴄᴋɪɴɢ ᴀ ᴄʜᴀᴛ ᴀɴᴅ sᴇɴᴅ ᴀʟʟ ᴍᴇssᴀɢᴇs ғʀᴏᴍ ᴛʜᴀᴛ ᴄʜᴀᴛ
+ᴜsᴇ ɪᴛ ᴏɴʟʏ ғᴏʀ ᴅᴇᴛᴇᴄᴛɪɴɢ ᴄʜᴇᴀᴛᴇʀs
 
 <b>/untrack &lt;chat_id&gt;</b>
-Stop tracking a previously tracked chat
+sᴛᴏᴘ ᴛʀᴀᴄᴋɪɴɢ ᴀ ᴘʀᴇᴠɪᴏᴜsʟʏ ᴛʀᴀᴄᴋᴇᴅ ᴄʜᴀᴛ
 
 <b>/tracklist</b>
-Show all currently tracked chats</blockquote>`;
+sʜᴏᴡ ᴀʟʟ ᴄᴜʀʀᴇɴᴛʟʏ ᴛʀᴀᴄᴋᴇᴅ ᴄʜᴀᴛs</blockquote>`;
 }
+
 
 composer.command("help", async (ctx) => {
   if (!ctx.from) return;
@@ -273,7 +286,7 @@ composer.command("help", async (ctx) => {
 
 CommandsHelper.addNewCommand(
   "help",
-  "Get help on how to play and commands list",
+  "ɢᴇᴛ ʜᴇʟᴘ ᴏɴ ʜᴏᴡ ᴛᴏ ᴘʟᴀʏ ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs ʟɪsᴛ",
 );
 
 export const helpCommand = composer;

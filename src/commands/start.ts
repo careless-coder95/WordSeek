@@ -9,14 +9,25 @@ const composer = new Composer();
 
 composer.command("start", async (ctx) => {
   const keyboard = new InlineKeyboard()
+    // 1st line
     .url(
-      "Add me to your Group",
+      "Add Me To Your Group",
       `https://t.me/${ctx.me.username}?startgroup=true`,
     )
+
+    // 2nd line
+    .row()
+    .text("Help and Commands", "help_howto")
+
+    // 3rd line
     .row()
     .url("Updates", UPDATES_CHANNEL)
-    .text("Help", "help_howto")
-    .url("Discussion", DISCUSSION_GROUP);
+    .url("Discussions", DISCUSSION_GROUP)
+
+    // 4th line
+    .row()
+    .url("Owner", "https://t.me/yourusername");
+});
 
   const caption = `<b>Welcome to WordSeek!</b>
 

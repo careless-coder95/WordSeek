@@ -1,11 +1,15 @@
 import { Composer, InlineKeyboard, InputFile } from "grammy";
-
 import { createReadStream } from "fs";
 
-import { DISCUSSION_GROUP, UPDATES_CHANNEL } from "../config/constants";
 import { CommandsHelper } from "../util/commands-helper";
 
 const composer = new Composer();
+
+// ===== FILL YOUR LINKS HERE =====
+const UPDATES_CHANNEL = "https://t.me/ll_CarelessxCoder_ll";
+const DISCUSSION_GROUP = "https://t.me/CarelessxWorld";
+const OWNER_LINK = "t.me/CarelessxOwner";
+// ================================
 
 composer.command("start", async (ctx) => {
   const keyboard = new InlineKeyboard()
@@ -26,8 +30,7 @@ composer.command("start", async (ctx) => {
 
     // 4th line
     .row()
-    .url("Owner", "https://t.me/yourusername");
-});
+    .url("Owner", OWNER_LINK);
 
   const caption = `<b>Welcome to WordSeek!</b>
 

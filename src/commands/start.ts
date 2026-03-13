@@ -15,33 +15,33 @@ composer.command("start", async (ctx) => {
   const keyboard = new InlineKeyboard()
     // 1st line
     .url(
-      "Add Me To Your Group",
+      "⌯ ᴀᴅᴅ ᴍє ɪη ʏσᴜʀ ɢʀσᴜᴘ ⌯",
       `https://t.me/${ctx.me.username}?startgroup=true`,
     )
 
     // 2nd line
     .row()
-    .text("Help and Commands", "help_howto")
+    .text("⌯ ʜєʟᴘ ᴧηᴅ ᴄσᴍᴍᴧηᴅ ⌯", "help_howto")
 
     // 3rd line
     .row()
-    .url("Updates", UPDATES_CHANNEL)
-    .url("Discussions", DISCUSSION_GROUP)
+    .url("⌯ ᴜᴘᴅᴧᴛє ⌯", UPDATES_CHANNEL)
+    .url("⌯ ᴅɪsᴄᴜssɪᴏη ⌯", DISCUSSION_GROUP)
 
     // 4th line
     .row()
-    .url("Owner", OWNER_LINK);
+    .url("⌯ ᴍʏ ᴍᴧsᴛєʀ ⌯", OWNER_LINK);
 
-  const caption = `<b>Welcome to WordSeek!</b>
+  const caption = `<b>ᴡσʀᴅѕєєᴋ ᴡєʟᴄσᴍєѕ ʏσᴜ!</b>
 
-A fun and competitive Wordle-style game that you can play directly on Telegram.
+ᴧ ғᴜη ᴧηᴅ ᴄσᴍᴘєᴛɪᴛɪᴠє ᴡσʀᴅʟє-ѕᴛʏʟє ɢᴧᴍє ᴛʜᴧᴛ ʏσᴜ ᴄᴧη ᴘʟᴧʏ ᴅɪʀєᴄᴛʟʏ ση ᴛєʟєɢʀᴧᴍ.
 
-<blockquote><b>Quick Start:</b>
-• Use /new to start a new game
-• Add me to a group with admin permissions to play with friends
-• Use /help for detailed instructions and command list</blockquote>
+<blockquote><b>Qᴜɪᴄᴋ Sᴛᴧʀᴛ</b>
+• ᴜѕє /new ᴛσ ѕᴛᴧʀᴛ ᴧ new ɢᴧᴍє  
+• ᴧᴅᴅ ᴍє ᴛσ ᴧ ɢʀσᴜᴘ ᴡɪᴛʜ ᴧᴅᴍɪɴ ᴘєʀᴍɪѕѕɪσηѕ ᴛσ ᴘʟᴧʏ ᴡɪᴛʜ ғʀɪєηᴅѕ  
+• ᴜѕє /help ғσʀ ᴅєᴛᴧɪʟєᴅ ɪηѕᴛʀᴜᴄᴛɪσηѕ ᴧηᴅ ᴄσᴍᴍᴧηᴅ ʟɪѕᴛ</blockquote>
 
-Ready to test your word skills? Let's play!`;
+ʀєᴧᴅʏ ᴛσ ᴛєѕᴛ ʏσᴜʀ ᴡσʀᴅ ѕᴋɪʟʟѕ? ʟєᴛ'ѕ ᴘʟᴧʏ!`;
 
   try {
     await ctx.replyWithPhoto(
